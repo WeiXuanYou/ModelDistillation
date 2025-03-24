@@ -27,7 +27,7 @@ def main():
     dataset = Dataset(IMG_SIZE)
     train_dataloader, test_dataloader = dataset.get_dataloader(batch_size = 12,num_workers = 4)
     
-    #The teacher model part
+    #Teacher model section
     teacher_model = TeacherModel().to(device)
     teacher_optimizer = torch.optim.Adam(teacher_model.parameters(), lr = lr,
                                           amsgrad = True)
@@ -38,7 +38,7 @@ def main():
     #teacher_model_trainer.k_fold_train("food101_teacher_model",5)
     utils.load_model(teacher_model, name = "food101_teacher_model")
   
-    #The student model part
+    #Student model section
     stu_model = StudentModel().to(device)
     stu_optimizer = torch.optim.Adam(stu_model.parameters(), lr = lr * 2 , 
                                      amsgrad = True , )# weight_decay = 1e-4)
